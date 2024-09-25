@@ -1,7 +1,18 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 
+/**
+ * Componente para la funcionalidad de restablecimiento de contraseña.
+ *
+ * Este componente permite a los usuarios ingresar su dirección de correo electrónico
+ * para recibir un enlace de restablecimiento de contraseña. También proporciona un
+ * enlace para volver a la página de inicio de sesión.
+ *
+ * @param {Object} props - Props del componente.
+ * @param {Function} props.setReset - Función para cambiar el estado de restablecimiento.
+ * 
+ * @returns {JSX.Element} Componente de restablecimiento de contraseña.
+ */
 const Reset = ({ setReset }) => {
   return (
     <>

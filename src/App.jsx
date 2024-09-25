@@ -15,11 +15,31 @@ import { onAuthStateChanged } from "firebase/auth";
 import Admin from "@/components/Admin";
 import RegistroMascotas from "@/components/RegistroMascotas";
 
-
+/**
+ * Componente principal de la aplicación.
+ * Maneja la autenticación de usuarios y la navegación entre diferentes rutas de la aplicación.
+ * 
+ * @returns {JSX.Element} Componente de la aplicación.
+ */
 const App = () => {
+  /** 
+   * Estado que indica si el usuario está autenticado.
+   * 
+   * @type {boolean}
+   */
   const [user, setUser] = useState(false);
+
+  /** 
+   * Estado que almacena el correo electrónico del usuario autenticado.
+   * 
+   * @type {string}
+   */
   const [email, setEmail] = useState("");
 
+  /** 
+   * Hook que se ejecuta al montar el componente.
+   * Escucha los cambios en el estado de autenticación del usuario.
+   */
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -36,8 +56,10 @@ const App = () => {
     <>
       <BrowserRouter>
         <ToastContainer position="bottom-center" />
+        {/* Navbar que permite navegar entre las diferentes secciones de la aplicación. */}
         <Navbar setUser={setUser} user={user} email={email} />
         <Routes>
+          {/* Rutas de la aplicación */}
           <Route path="/" element={<Home />} />
           <Route path="/dog" element={<Dog />} />
           <Route path="/cat" element={<Cat />} />
@@ -47,7 +69,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/Financing" element={<RegistroMascotas email={email} />} />
           <Route path="/admin" element={<Admin />} />
-         <Route exact path="/Mascotas/:id" element={<UserProfile />} />
+          <Route exact path="/Mascotas/:id" element={<UserProfile />} />
           <Route path="/RegistroMascotas" element={<RegistroMascotas />} />
         </Routes>
       </BrowserRouter>

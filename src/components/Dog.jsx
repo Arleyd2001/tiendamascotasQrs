@@ -11,6 +11,15 @@ import dog7 from "@/assets/dog/dog7.jpeg";
 import dog8 from "@/assets/dog/dog8.png";
 import Slider from "@/components/Slider";
 
+/**
+ * Componente Dog.
+ *
+ * Este componente representa la página de productos para perros. Muestra una
+ * lista de productos con su imagen, título, descripción, precio y un botón
+ * para realizar la compra a través de WhatsApp.
+ *
+ * @returns {JSX.Element} Componente que representa la sección de productos para perros.
+ */
 const Dog = () => {
   const coursesLink = [
     {
@@ -25,7 +34,7 @@ const Dog = () => {
       id: 2,
       img: dog2,
       title: "Juguete masticable para perro",
-      description: "Nuestro juguete masticable para perros está hecho de caucho duradero, diseñado para soportar mordidas fuertes. Su textura especial ayuda a limpiar los dientes y masajear las encías, promoviendo una buena salud dental. ",
+      description: "Nuestro juguete masticable para perros está hecho de caucho duradero, diseñado para soportar mordidas fuertes. Su textura especial ayuda a limpiar los dientes y masajear las encías, promoviendo una buena salud dental.",
       price: "35.000",
       link: "https://wa.me/3046221615?text=Hola,%20estoy%20interesado%20en%20comprar%20este%20producto:%20Juguete%20masticable%20para%20perro.",
     },
@@ -48,16 +57,16 @@ const Dog = () => {
     {
       id: 5,
       img: dog5,
-      title: "Alimento para perro Proplan 3 Kg ",
+      title: "Alimento para perro Proplan 3 Kg",
       description: "Dale a tu perro una alimentación premium con las Croquetas Pro Plan. Formuladas con ingredientes de alta calidad, estas croquetas ofrecen una nutrición completa y equilibrada para promover una salud óptima.",
-      price: "130.000 ",
+      price: "130.000",
       link: "https://wa.me/3046221615?text=Hola,%20estoy%20interesado%20en%20comprar%20este%20producto:%20Alimento%20para%20perro%20Proplan%203%20Kg.",
     },
     {
       id: 6,
       img: dog6,
       title: "Alimento para perro Chunky 9Kg",
-      description: "Proporciona a tu perro la mejor nutrición con el Alimento para Perro Chunky. Hecho con ingredientes de alta calidad, este alimento balanceado ofrece una dieta completa y deliciosa para tu mascota.  ",
+      description: "Proporciona a tu perro la mejor nutrición con el Alimento para Perro Chunky. Hecho con ingredientes de alta calidad, este alimento balanceado ofrece una dieta completa y deliciosa para tu mascota.",
       price: "76.000",
       link: "https://wa.me/3046221615?text=Hola,%20estoy%20interesado%20en%20comprar%20este%20producto:%20Alimento%20para%20perro%20Chunky%209Kg.",
     },
@@ -73,11 +82,17 @@ const Dog = () => {
       id: 8,
       img: dog8,
       title: "Casa para Perro",
-      description: "Ofrece a tu mascota un refugio cómodo y seguro con nuestra Casa para Perro. Fabricada con materiales duraderos y resistentes a la intemperie, esta casa proporciona un espacio acogedor para tu perro en cualquier estación del año. ",
+      description: "Ofrece a tu mascota un refugio cómodo y seguro con nuestra Casa para Perro. Fabricada con materiales duraderos y resistentes a la intemperie, esta casa proporciona un espacio acogedor para tu perro en cualquier estación del año.",
       price: "170.000",
       link: "https://wa.me/3046221615?text=Hola,%20estoy%20interesado%20en%20comprar%20este%20producto:%20Casa%20para%20Perro.",
     },
   ];
+
+  /**
+   * Maneja el evento de compra al abrir un enlace de WhatsApp.
+   * 
+   * @param {string} link - Enlace de WhatsApp para realizar la compra del producto.
+   */
   const handleComprar = (link) => {
     window.open(link, "_blank");
   };
@@ -88,7 +103,6 @@ const Dog = () => {
       <Section title="Productos para perros" className="lg:mx-56 lg:py-56 mx-2 py-6 flex-col relative">
         <div className="w-full flex justify-between items-center md:flex-row flex-col sm:mb-16 mb-6 relative z-[1]">
           <h2 className="font-bold text-4xl my-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00CEF5] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 md:text-5xl capitalize ">
-           
             <br className="sm:block hidden" />
           </h2>
         </div>

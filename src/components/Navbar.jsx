@@ -5,13 +5,31 @@ import { auth, db } from "../configFirebase";
 import { Link, useNavigate } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-
+/**
+ * Componente de navegación para la aplicación.
+ *
+ * Este componente muestra la barra de navegación en la parte superior de la
+ * página. Permite a los usuarios navegar entre diferentes secciones de la
+ * aplicación y proporciona opciones de inicio de sesión y cierre de sesión.
+ *
+ * @param {Object} props - Props del componente.
+ * @param {Function} props.setUser - Función para establecer el estado del usuario.
+ * @param {Object} props.user - Objeto del usuario actual.
+ * @returns {JSX.Element} Componente de navegación.
+ */
 const Navbar = ({ setUser, user }) => {
   const [isMenuShown, setIsMenuShown] = useState(false);
   const [isUserInUsuarios, setIsUserInUsuarios] = useState(false);
   const [userMessage, setUserMessage] = useState("");
 
   useEffect(() => {
+    /**
+     * Verifica si el usuario actual está en la colección "Usuarios".
+     *
+     * Esta función busca en Firestore si el correo electrónico del usuario
+     * actual existe en la colección "Usuarios" y actualiza el estado
+     * correspondiente.
+     */
     const checkUserInUsuarios = async () => {
       try {
         if (user && user.email) {
@@ -23,7 +41,6 @@ const Navbar = ({ setUser, user }) => {
           setIsUserInUsuarios(!userSnapshot.empty);
           setUserMessage(
             userSnapshot.empty
-           
           );
         }
       } catch (error) {
@@ -36,9 +53,15 @@ const Navbar = ({ setUser, user }) => {
 
     checkUserInUsuarios();
   }, [user]);
-  
 
   const redirect = useNavigate();
+
+  /**
+   * Maneja el cierre de sesión del usuario.
+   *
+   * Este método cierra la sesión del usuario actual en Firebase y redirige
+   * a la página de inicio.
+   */
   const logout = () => {
     signOut(auth)
       .then(() => {
@@ -86,9 +109,7 @@ const Navbar = ({ setUser, user }) => {
                     user ? "" : "hidden"
                   }`}
                 >
-
                   Lista
-                  
                 </li>
               </Link>
               <Link to="/login">
@@ -156,9 +177,6 @@ const Navbar = ({ setUser, user }) => {
               Login
             </li>
           </Link>
-
-  
-
 
           <Link onClick={() => setIsMenuShown(!isMenuShown)} to="/RegistroMascotas">
             <li

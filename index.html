@@ -7,8 +7,22 @@
     <title>Tienda</title>
   </head>
   <body>
+    <!-- 
+      Contenedor de carga para mostrar una animación de carga mientras la aplicación se inicializa.
+      Se ocultará cuando la aplicación React se haya cargado completamente.
+    -->
     <div id="loader"></div>
+
+    <!-- 
+      Contenedor principal donde se renderizará la aplicación React. 
+      El contenido de esta sección se generará dinámicamente mediante JavaScript.
+    -->
     <div id="root"></div>
+
+    <!-- 
+      Script que inicia la aplicación React. 
+      Se importa el archivo main.jsx donde se configura la aplicación.
+    -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

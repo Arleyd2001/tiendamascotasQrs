@@ -5,12 +5,30 @@ import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../configFirebase";
 import Section from "@/components/Section";
 
+/**
+ * Genera un ID único para la mascota.
+ *
+ * @returns {string} ID único generado.
+ */
 const generateId = () => {
   const timestamp = Date.now().toString(36);
   const randomPart = Math.random().toString(36).substr(2, 5);
   return `${timestamp}-${randomPart}`;
 };
 
+/**
+ * Componente para registrar mascotas.
+ *
+ * Este componente permite a los usuarios registrar una nueva mascota proporcionando
+ * detalles como el nombre del dueño, nombre de la mascota, raza, dirección, teléfono,
+ * correo y descripción. Al enviar el formulario, se genera un código QR que contiene
+ * un enlace a la información de la mascota.
+ *
+ * @param {Object} props - Props del componente.
+ * @param {string} props.email - Correo electrónico del usuario.
+ * 
+ * @returns {JSX.Element} Componente de registro de mascotas.
+ */
 const RegistroMascotas = ({ email }) => {
   const [id, setId] = useState(generateId());
   const [NombreDueño, setNombreDueño] = useState("");
@@ -22,6 +40,11 @@ const RegistroMascotas = ({ email }) => {
   const [Telefono, setTelefono] = useState("");
   const [qrLink, setQrLink] = useState("");
 
+  /**
+   * Maneja el envío del formulario y guarda la información de la mascota en Firestore.
+   *
+   * @param {React.FormEvent} e - Evento de formulario.
+   */
   const calcularSolicitud = async (e) => {
     e.preventDefault(); // Previene la recarga de la página al enviar el formulario
 

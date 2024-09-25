@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "@/configFirebase";
 import { collection, getDocs } from "firebase/firestore";
-import { useEffect } from "react";
 import Section from "@/components/Section";
 import { Link } from "react-router-dom";
 import Slider from "@/components/Slider";
@@ -10,6 +9,15 @@ import dog from "@/assets/mascotas/dog.png";
 import cat from "@/assets/mascotas/cat.png";
 import mouse from "@/assets/mascotas/mouse.png";
 
+/**
+ * Componente Home.
+ *
+ * Este componente renderiza la página principal de la aplicación, mostrando un
+ * slider y una galería de productos para mascotas. Cada producto está vinculado
+ * a una ruta específica donde se pueden ver más detalles.
+ *
+ * @returns {JSX.Element} Componente que representa la página principal.
+ */
 const Home = () => {
   const productGallery = [
     {
@@ -28,23 +36,23 @@ const Home = () => {
       image: cat,
       link: "/cat",
     },
-   // {
-     // id: 3,
-      //name: "Mouse",
-     // title: "FOR RODENTS",
-     // subtitle: "description",
-      //cop: "COP",
-     // usd: "USD",
-     // image: mouse,
-     // link: "/roudents",
-    //},
+    // {
+    //   id: 3,
+    //   name: "Mouse",
+    //   title: "FOR RODENTS",
+    //   subtitle: "description",
+    //   cop: "COP",
+    //   usd: "USD",
+    //   image: mouse,
+    //   link: "/roudents",
+    // },
   ];
 
-  // // const [data, setData] = useState([]);
+  // Este efecto podría usarse para obtener datos de Firebase Firestore en el futuro
+  // const [data, setData] = useState([]);
   // const getFiles = async () => {
   //   const x = [];
-
-  //  };
+  // };
 
   // useEffect(() => {
   //   getFiles();
@@ -60,12 +68,12 @@ const Home = () => {
           {productGallery.map((product) => (
             <figure
               key={product.id}
-              className="relative bg-white shadow-md rounded-lg overflow-hidden "
+              className="relative bg-white shadow-md rounded-lg overflow-hidden"
             >
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-48 object-contain "
+                className="w-full h-48 object-contain"
               />
               <div className="p-4">
                 <h2 className="text-xl font-bold mb-2">{product.title}</h2>
@@ -83,7 +91,7 @@ const Home = () => {
             </figure>
           ))}
         </div>
-        <div className="btn-group mt-36 ">
+        <div className="btn-group mt-36">
           <button className="btn bg-primary">1</button>
           <button className="btn bg-primary">2</button>
           <button className="btn bg-primary">3</button>

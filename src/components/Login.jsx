@@ -4,25 +4,43 @@ import { auth } from "@/configFirebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "@/components/Loader";
-
 import Reset from "@/components/Reset";
 
+/**
+ * Componente de inicio de sesión para la aplicación.
+ *
+ * Este componente permite a los usuarios iniciar sesión utilizando su correo
+ * electrónico y contraseña. También ofrece una opción para restablecer la
+ * contraseña.
+ *
+ * @returns {JSX.Element} Componente de inicio de sesión.
+ */
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //estado para mostar dinamicamente login o reset
+  // Estado para mostrar dinámicamente el formulario de inicio de sesión o el de restablecimiento
   const [reset, setReset] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const redirect = useNavigate();
+
+  /**
+   * Maneja el evento de inicio de sesión del usuario.
+   *
+   * Este método verifica las credenciales del usuario y, si son correctas,
+   * redirige a la página principal. En caso de error, muestra un mensaje
+   * de error.
+   *
+   * @param {Event} e - Evento del formulario.
+   */
   const iniciarSesion = (e) => {
     e.preventDefault();
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        toast.success("Inicio de sesion exitoso ");
+        toast.success("Inicio de sesión exitoso");
         redirect("/");
         setIsLoading(false);
       })
@@ -49,18 +67,18 @@ const Login = () => {
         <div className="flex items-center justify-center lg:w-1/2">
           <form className="flex flex-col gap-4 w-[300px] lg:w-[500px] items-center shadow-lg shadow-gray-500 rounded-xl p-6 ">
             <h1 className="w-full text-center font-bold text-2xl ">
-              Inicio de Sesion
+              Inicio de Sesión
             </h1>
             <input
               type="text"
               placeholder="Correo"
-              className="input  input-primary  w-full"
+              className="input input-primary w-full"
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               placeholder="Contraseña"
-              className="input input-primary  w-full"
+              className="input input-primary w-full"
               onChange={(e) => setPassword(e.target.value)}
             />
             <button

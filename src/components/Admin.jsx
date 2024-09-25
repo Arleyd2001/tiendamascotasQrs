@@ -11,6 +11,16 @@ import Loader from "@/components/Loader";
 import Input from "@/components/Input";
 import Section from "@/components/Section";
 
+/**
+ * Componente Admin.
+ *
+ * Este componente permite a los administradores crear un nuevo vehículo
+ * y subir su información a la base de datos de Firebase. Incluye un
+ * formulario para ingresar los detalles del vehículo y una funcionalidad
+ * para subir una imagen del mismo.
+ *
+ * @returns {JSX.Element} Componente que permite crear vehículos.
+ */
 const Admin = () => {
   const [file, setFile] = useState({
     modelo: "",
@@ -38,10 +48,21 @@ const Admin = () => {
   const [upload, setUpload] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  /**
+   * Maneja los cambios en los campos del formulario.
+   *
+   * @param {Event} e - El evento de cambio.
+   */
   const handleChange = (e) => {
     setFile({ ...file, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Sube un archivo a Firebase Storage y retorna la URL de descarga.
+   *
+   * @param {File} file - El archivo a subir.
+   * @returns {Promise<string>} URL de descarga del archivo subido.
+   */
   const uploadFile = async (file) => {
     const storageRef = ref(storage, v4());
 
@@ -50,6 +71,11 @@ const Admin = () => {
     return url;
   };
 
+  /**
+   * Publica los detalles del vehículo en Firestore.
+   *
+   * @param {Event} e - El evento de envío del formulario.
+   */
   const postFile = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -78,12 +104,13 @@ const Admin = () => {
       urlImagen: "",
     });
   };
+
   return (
     <>
       <Section title="Crear Vehiculo">
         {isLoading ? <Loader /> : ""}
 
-        <form className=" flex flex-col p-10 gap-4 w-full">
+        <form className="flex flex-col p-10 gap-4 w-full">
           <input
             type="file"
             name="urlImagen"
@@ -147,8 +174,7 @@ const Admin = () => {
 
           <button
             onClick={postFile}
-            className="flex items-center justify-center gap-4 mt- 
-                mt-10 text-white bg-black border-0 py-2 px-4 w-[130px] focus:outline-none  hover:scale-105 duration-300 rounded"
+            className="flex items-center justify-center gap-4 mt-10 text-white bg-black border-0 py-2 px-4 w-[130px] focus:outline-none hover:scale-105 duration-300 rounded"
           >
             Agregar
             <MdLibraryAdd />

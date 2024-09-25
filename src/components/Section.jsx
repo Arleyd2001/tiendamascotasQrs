@@ -1,5 +1,15 @@
 import React from "react";
 
+/**
+ * Componente que representa una sección con un título, un subtítulo y contenido adicional.
+ *
+ * @param {Object} props - Props del componente.
+ * @param {string} props.title - Título de la sección.
+ * @param {string} props.subtitle - Subtítulo de la sección.
+ * @param {React.ReactNode} props.children - Contenido adicional que se mostrará dentro de la sección.
+ * 
+ * @returns {JSX.Element} Componente de sección.
+ */
 const Section = ({ title, subtitle, children }) => {
   return (
     <div>
